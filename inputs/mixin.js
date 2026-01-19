@@ -1,11 +1,27 @@
 import { attrsToHtmlAttrs } from "./utils.js";
 import { invokeValue } from '../vendors.js';
 export const commonInputMixin = {
-	_initializeInput(keys, value) {
+	_initializeInput(keys, value, options) {
+		this.mergeOptions(options, ['transformOutValue']);
+		this.valueType = this.getOption("valueType", true);
+		this.valueSubType = this.getOption("valueSubType", true);
 		this._tagAttributes = this._getTagAttributes(keys);
+
 		this.value = this.initialValue = invokeValue(value, this, this);
 		this.on('user:input', function(value){ console.log(value, false) })
 		this.on('user:input:done', function(value){ console.log(value, true) })
+	},
+	_transformOutValue(value) {
+		if (this.transformOutValue) {
+			return this.transformOutValue(value);
+		}
+		if (this.valueType === 'number') {
+			value = parseFloat(value, 10);
+			if (this.valueSubType === 'integer') {
+				value = Math.round(value);
+			}
+		}
+		return value;
 	},
 	commonTemplateContext() {
 		let htmlAttrs = attrsToHtmlAttrs(this._tagAttributes);
@@ -29,5 +45,10 @@ export const commonInputMixin = {
 			let value = this._extractValue();
 			this.trigger('user:input:done', value);
 		}
-	}
+	},
+	_extractValue() {
+		const val = this.ui.input.val();
+		return this._transformOutValue(val);
+	},	
+
 }

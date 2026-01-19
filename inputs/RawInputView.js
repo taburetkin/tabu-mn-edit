@@ -17,9 +17,6 @@ export const RawInputView = View.extend({
 	templateContext() {
 		return this.commonTemplateContext();
 	},
-	_extractValue() {
-		return this.ui.input.val();
-	},	
 	ui: {
 		input: 'input'
 	},
