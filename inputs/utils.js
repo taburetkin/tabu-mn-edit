@@ -34,6 +34,17 @@ export function handleInputDone(view, event) {
 
 }
 
+export function isAnyInputFocused() {
+  const activeElement = document.activeElement;
+
+  // Check if the active element is an input, textarea, or select element
+  if (activeElement) {
+    return activeElement.matches('input, textarea, select, button');
+  }
+  return false;
+}
+
+
 export const commonAttributeKeys = {
 	inputName: 'name',
 	inputPlaceholder: 'placeholder',

@@ -1,2 +1,2 @@
-export { View, CollectionView, invokeValue } from 'tabu-mn';
+export { View, CollectionView, invokeValue, MnObject } from 'tabu-mn';
 export { Model, Collection } from 'backbone';
