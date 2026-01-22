@@ -36,6 +36,7 @@ export const commonInputMixin = {
 		if (htmlAttrs) {
 			htmlAttrs = ' ' + htmlAttrs;
 		}
+		console.log({ htmlAttrs, p: this._tagAttributes });
 		return { htmlAttrs };
 	},
 	_getTagAttributes(keys) {
@@ -44,7 +45,7 @@ export const commonInputMixin = {
 		if (this.valueType === 'number' && attrs.type == null) {
 			attrs.type = "number";
 		}
-		//console.log(attrs)
+		console.log({ keys, attrs })
 		return attrs;
 	},
 	_handleInput() {

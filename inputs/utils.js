@@ -17,8 +17,9 @@ export function attrsToHtmlAttrs(obj) {
 
 
 function htmlEncodeAttr(str) {
+		if (str == null) return '';
     if (typeof str !== 'string') {
-        return '';
+        str = str.toString();
     }
     const tempDiv = document.createElement('div');
     tempDiv.textContent = str; // Браузер автоматически кодирует <, >, &

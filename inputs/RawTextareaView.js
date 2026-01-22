@@ -18,6 +18,7 @@ export const RawTextareaView = View.extend({
 	templateContext() {
 		const ctx = this.commonTemplateContext();
 		ctx.value = this.value;
+		console.log({ v: this.value, o: this.getOption('value', true), os: this.options })
 		return ctx;
 	},
 	_extractValue() {
